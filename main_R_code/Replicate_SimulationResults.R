@@ -3,6 +3,7 @@
 #############################################
 ## Load Libraries
 library(bliss)
+library(BayesLogit)
 
 ## Source in Helper Functions
 source("../helper_functions/dhs_sampling.R")
