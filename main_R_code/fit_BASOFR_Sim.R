@@ -14,7 +14,7 @@ library(ggplot2)
 library(latex2exp)
 
 ## Source in Helper Functions
-source("../helper_functions/dhs_sampling.R")
+source("./helper_functions/dhs_sampling.R")
 
 ## Set sample size, signal-to-noise ratio (SNR)
 n=500; STN=5 
