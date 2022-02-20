@@ -41,7 +41,5 @@ To run the code, the user will need to specify the following variables (all spec
 * STN - the signal-to-noise ratio 
 * smoothness - the smoothness of the functional predictors
 
-To run a MCMC with 20000 iterations, fit_BASOFR_Sim.R takes about 40 seconds for sample size 50, 40 seconds for sample size 100, 50 seconds for sample size 500, 
-
-on a MacBook Pro, 2.6GHz Intel Core i7
+To run a MCMC with 20000 iterations, fit_BASOFR_Sim.R takes about 40 seconds for sample size 50, 40 seconds for sample size 100, 50 seconds for sample size 500, 7 minutes for sample size 10,000 on a MacBook Pro, 2.6GHz Intel Core i7.
 
