@@ -28,8 +28,8 @@ simulation.setting
 ## for example
 n= 50; SNR = 10; mode = "smooth"
 
-# The argument N is the number of simulations we run
-test = Sim_BASOFR_LP_P_BLISS(N=10, n=n, STN = SNR, smoothness = mode)
+# The argument N is the number of simulations, in the original paper N=50
+test = Sim_BASOFR_LP_P_BLISS(N=50, n=n, STN = SNR, smoothness = mode)
 
 result = as.data.frame(test)
 
