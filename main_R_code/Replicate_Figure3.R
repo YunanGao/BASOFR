@@ -148,6 +148,7 @@ for (s in 1:S) {
 ########################
 
 ## Load the BASOFR MCMC result (This is produced by the fit_BASOFR_Sim.R code)
+## Users need to set the R working directory as the path of the main_R_code file
 load("MCMC_BASOFR_n500_SNR5_smooth.RDATA")
 
 ## discard the burn-in, compute the posterior distribution of the regression function estimate 
