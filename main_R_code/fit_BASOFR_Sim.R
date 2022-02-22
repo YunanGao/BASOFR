@@ -14,7 +14,7 @@ library(ggplot2)
 library(latex2exp)
 
 ## Source in Helper Functions
-## (Users need to set the work directory to the main_R_code folder)
+## Users need to set the R working directory as the path of the main_R_code file
 source("../helper_functions/dhs_sampling.R")
 
 ## Set sample size, signal-to-noise ratio (SNR)
