@@ -37,7 +37,7 @@ if(smoothness == "smooth"){l = 0.1}
 if(smoothness == "nonsmooth"){l=0.01}
 
 ## Simulate the functional observations from a Gaussian process
-# set.seed(1111)  # seed is for reproducing Figure 3s 
+# set.seed(1111)  # seed is for reproducing Figure 3
 x_diff = abs(matrix(rep(x,obs.x), nrow=obs.x)-t(matrix(rep(x,obs.x),nrow=obs.x)))
 sigma_x = 0.7
 Kernel = sigma_x^2 * exp(-x_diff^2/(2*l^2))
