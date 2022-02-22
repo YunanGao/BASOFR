@@ -177,7 +177,7 @@ for (s in 1:S) {
 print(paste0("MCMC running time is :",Sys.time() - t0))
 
 ## To replicate the result from Figure 3,
-## we saved the results for n=500, SNR=5, smoothness = "smooth" as:
+## we saved the results for n=500, SNR=5, smoothness = "smooth" with random seed 1111 as:
 # save(MCMC.BASOFR, file = "MCMC_BASOFR_n500_SNR5_smooth.RDATA")
 
 #######################
