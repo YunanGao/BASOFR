@@ -6,6 +6,7 @@ library(bliss)
 library(BayesLogit)
 
 ## Source in Helper Functions
+## Users need to set the R working directory as the path of the main_R_code file
 source("../helper_functions/dhs_sampling.R")
 source("../helper_functions/Sim_BASOFR_BLISS_LP_P.R")
 
