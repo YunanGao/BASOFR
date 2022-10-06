@@ -9,7 +9,7 @@
 # 1. estimate an BASOFR model
 # 2. extract the critical windows from the model using the proposed decision analysis tools.
 # 3. evalute the critical window selection using true positive rate (TPR) and true negative rate (TNR)
-# and compare the results 
+# and compare the results between the decision analysis approach and the credible interval-based approach. 
 
 
 ###################
