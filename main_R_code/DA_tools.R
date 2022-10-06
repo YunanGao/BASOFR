@@ -4,11 +4,12 @@
 ###########################################
 
 # We use this code to show an example of using the proposed decision analysis strategy to
-# identify critical windows of susceptibility from a Bayesian SOFR. 
+# identify critical windows of susceptibility from a Bayesian SOFR. This code contains the following contents:
 
-# In this code, 
-# we first estimate an BASOFR model, 
-# and then extract interpretable point estimates from the model using the proposed decision analysis tools
+# 1. estimate an BASOFR model
+# 2. extract the critical windows from the model using the proposed decision analysis tools.
+# 3. evalute the critical window selection using true positive rate (TPR) and true negative rate (TNR)
+# and compare the results 
 
 
 ###################
