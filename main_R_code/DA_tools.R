@@ -348,6 +348,9 @@ ell_eps_in_set = intersect(which(colMeans(post.dmse <= 0) >= eps_level),
 par(mfrow=c(1,1))
 model.index = 1:dim(model.sum)[1]
 
+###################################
+# Selecting the acceptable family #                  
+###################################                 
 plot(model.index,
      colMeans(post.dmse),type='p', ylim = range(ci_dmse, 0), lwd=5,
      xlab = 'Model Index', ylab = 'Difference in predictive loss(%)', main = '',
@@ -359,7 +362,7 @@ arrows(model.index[-ell_min_in], ci_dmse[-ell_min_in,1],
        model.index[-ell_min_in], ci_dmse[-ell_min_in,2],
        length=0.05, angle=90, code=3, lwd=3)
 lines(model.index, dmse, type='p', lwd=7,col='gray', pch=4, cex=3)
-
+                  
 #############################################################
 ## Visualize the simplest member in the acceptable family  ##
 #############################################################
@@ -389,7 +392,9 @@ ggplot() +
   geom_ribbon(aes(x=x, y=NULL, ymin = beta.low95.BASOFR, ymax = beta.high95.BASOFR), fill="blue", alpha = I(1/5))+
   geom_ribbon(aes(x=x, y=NULL, ymin = beta.low50.BASOFR, ymax = beta.high50.BASOFR), fill="blue", alpha = I(2/5))
 
-
+# Though the posterior mean and credible intervals offer limited ability to describe the true regression function,
+# the proposed decision analysis approach adequately recovers the truth. 
+        
 #############################################################
 ## Compare the critical window selection using the proposed decision  ##
 ## analysis approch v.s. credible interval-based selection
