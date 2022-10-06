@@ -29,14 +29,11 @@ library(RColorBrewer)
 
 ## Source in Helper Functions
 ## Users need to set the R working directory as the path of the main_R_code file
+setwd('/Users/yunangao/Downloads/BASOFR-main 4/main_R_code')
 source("../helper_functions/dhs_sampling.R")
 
 ## Set sample size, signal-to-noise ratio (SNR)
 n = 100000; STN = 0.05
-
-## Set grid the functional predictors are observed on
-obs.x=101
-x = seq(0,1,length.out = obs.x)
 
 ## Set true regression function \beta(t)
 beta = -0.02* as.numeric ( x <=0.333) + 0.02*as.numeric(x> 0.333 & x<=0.67) - 0.02*as.numeric(x>=0.67 & x<=1)
@@ -46,7 +43,7 @@ beta = -0.02* as.numeric ( x <=0.333) + 0.02*as.numeric(x> 0.333 & x<=0.67) - 0.
 #######################
 
 # This R function below generate functional covariates with seasonality patterns
-FunctionalPredictors= function(n, l, x=x, sigma_x = 0.7, seasonality=TRUE,  P=365/(295-1), A=1 ){
+FunctionalPredictors= function(n, l, x=seq(0,1,length.out = 101), sigma_x = 0.7, seasonality=TRUE,  P=365/(295-1), A=1 ){
   ## phase parameters
   if(seasonality == TRUE){
     phi.phase = as.matrix(runif(n, min=0, max=2*pi))
@@ -76,7 +73,7 @@ FunctionalPredictors= function(n, l, x=x, sigma_x = 0.7, seasonality=TRUE,  P=36
 
 ## this code simulate functional covariates
 set.seed(1) 
-x.sim = FunctionalPredictors(n=n, l=0.001, seasonality = TRUE,  P=365/((295-1)*2))
+x.sim = FunctionalPredictors(n=100000, l=0.001, seasonality = TRUE,  P=365/((295-1)*2))
 
 ## Simulate the scalar responses
 noise.sd = sd(tcrossprod(x.sim, t(beta))/(obs.x-1))/STN
@@ -243,6 +240,7 @@ BASOFR.plot
 #############################
 
 ## Suppose delta(t) is locally constant over a partition, and we calculate the aggregated trajectories of the X(t) over these subdomains.
+partition.K = seq(0,1,0.05)
 K = length(partition.K) -1
 x.subdomain.aver.K = t(apply(x.sim, 1, function(x)
   rowSums(matrix(x[-1], ncol=(1/K)/(1/(obs.x-1)), byrow = TRUE))*0.01 + 
@@ -279,7 +277,7 @@ model.sum = model.sum[order(model.sum$num.cp),]
 MSE.predictive.insample = array(NA, dim=c(dim(model.sum)[1],iter))
 MSE.insample = rep(NA, dim(model.sum)[1])
 
-## Visualize each locally constant estimates and 
+## Obtain the predictive and empirical MSE for each locally constant estimates and 
 par(mfrow=c(2,2))
 for (m in 1:dim(model.sum)[1]) {
   model = model.sum[m,]
@@ -305,7 +303,7 @@ for (m in 1:dim(model.sum)[1]) {
                                                                                max(beta.m, beta.pm, beta)))
   lines(x,beta, type="b",col="red")
   lines(x, beta.pm, col="blue",lty=6,lwd=3)
-  legend("bottomright", legend=c("BAM", "BASOFR", "truth"),
+  legend("bottomright", legend=c("BAM", "BASOFR", "truth"), 
          col=c("black", "blue", "red"), lty=c(6,6,6), cex=0.8, lwd=c(4,3,3),
          bg='transparent')
   
@@ -351,19 +349,23 @@ model.index = 1:dim(model.sum)[1]
 
 ###################################
 # Selecting the acceptable family #                  
-###################################                 
+################################### 
+par(mai=c(1,1.5,1,0.5))
 plot(model.index,
      colMeans(post.dmse),type='p', ylim = range(ci_dmse, 0), lwd=5,
      xlab = 'Model Index', ylab = 'Difference in predictive loss(%)', main = '',
-     cex.lab = 2.6, cex.axis=2)
-abline(h = eta_level, lwd=3, lty=6)
+     cex.lab = 2, cex.axis=2)
+abline(h = 0, lwd=3, lty=6)
 abline(v = ell_eps_in_set, lwd = 3, col="darkgrey")
 abline(v = ell_min_in, lwd=3, col="lightgray", lty=3)
 arrows(model.index[-ell_min_in], ci_dmse[-ell_min_in,1],
        model.index[-ell_min_in], ci_dmse[-ell_min_in,2],
        length=0.05, angle=90, code=3, lwd=3)
 lines(model.index, dmse, type='p', lwd=7,col='gray', pch=4, cex=3)
-                  
+
+# All the model(s) on the right hand side of the dark grey model belongs to the acceptable family (epsilon),
+# and they all have competitive predictive performanaces. The dark grey model is the simplest member among the acceptable family
+
 #############################################################
 ## Visualize the simplest member in the acceptable family  ##
 #############################################################
@@ -419,8 +421,11 @@ TNR.CI = true.negative.CI/pr.negative
 TNR.DA = true.negative.DA/pr.negative
 
 ## L2-error (posterior mean v.s. locally constant estimate)
-l2.error.BASOFR = sum((beta - beta.pm.BASOFR)^2/(obs.x-1))
-l2.error.DA = sum((beta - beta.DA)^2/(obs.x-1))
+
+# l2-error of the posterior mean
+(l2.error.BASOFR = sum((beta - beta.pm.BASOFR)^2/(obs.x-1)))
+# l2-error of the locally constant estimate
+(l2.error.DA = sum((beta - beta.DA)^2/(obs.x-1)))
 
 df.result = data.frame(matrix(NA, nrow=2, ncol=2))
 colnames(df.result) = c('TPR', 'TNR')
@@ -429,5 +434,7 @@ rownames(df.result) = c('CI', 'DA')
 df.result[1,] = c(TPR.CI, TNR.CI)
 df.result[2,] = c(TPR.DA, TNR.DA)
 df.result
+
+
 
 
