@@ -16,7 +16,7 @@
 ## Preliminaries ##
 ###################
 
-##Load Libraries
+## Load Libraries
 library(MASS)
 library(fda)
 library(ggplot2)
