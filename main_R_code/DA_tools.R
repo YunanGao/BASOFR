@@ -29,7 +29,6 @@ library(RColorBrewer)
 
 ## Source in Helper Functions
 ## Users need to set the R working directory as the path of the main_R_code file
-setwd('/Users/yunangao/Downloads/BASOFR-main 4/main_R_code')
 source("../helper_functions/dhs_sampling.R")
 
 ## Set sample size, signal-to-noise ratio (SNR)
