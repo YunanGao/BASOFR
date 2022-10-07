@@ -35,6 +35,7 @@ source("../helper_functions/dhs_sampling.R")
 n = 100000; STN = 0.05
 
 ## Set true regression function \beta(t)
+x=seq(0,1,length.out = 101)
 beta = -0.02* as.numeric ( x <=0.333) + 0.02*as.numeric(x> 0.333 & x<=0.67) - 0.02*as.numeric(x>=0.67 & x<=1)
 
 #######################
