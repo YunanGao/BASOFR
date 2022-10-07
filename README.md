@@ -42,6 +42,16 @@ To run the code, the user will need to specify the following variables (all spec
 * STN - the signal-to-noise ratio 
 * smoothness - the smoothness of the functional predictors
 
+DA_tool.R is the main code for the proposed decision analysis tool. This code uses the following libararies and the libararies used in fit_BASOFR_Sim.R:
+
+* genlasso 1.5  
+* coda 0.19-4    
+library(coda)
+library(stochvol)
+
+library(genlasso)
+library(latex2exp)
+library(RColorBrewer)
 To run the fit_BASOFR_Sim.R, Replicate_Figure3.R, and Replicate_SimulationResults.R code, the user will need to set the R working directory as the path of the main_R_code file.
 
 To run a MCMC with 20000 iterations, fit_BASOFR_Sim.R takes about 40 seconds for sample size 50, 40 seconds for sample size 100, 50 seconds for sample size 500, 7 minutes for sample size 10,000 on a MacBook Pro, 2.6GHz Intel Core i7.
