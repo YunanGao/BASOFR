@@ -20,7 +20,7 @@ The code for producing all simulated data and simulation results is included her
 This folder contains all necessary files to fit the BASOFR model as well as reproduce all the simulated data and simulation results.  The contents of this folder are as follows:
 
 * ./main_R_code/fit_BASOFR_Sim.R: code for producing the simulated data and fitting the BASOFR model with it
-* ./main_R_code/fit_BASOFR_Sim.R: 
+* ./main_R_code/DA_tools.R: code for an example of using the proposed decison analysis strategy to identify critical windows from the BASOFR result. The plots generated here also replicate Figure 6 in the original paper
 * ./main_R_code/Replicate_Figure2.R: code for reproducing the result shown in Figure 2 of the original paper
 * ./main_R_code/Replicate_SimulationResults_noSeason.R: code for reproducing the simulation results shown in Section B of the supplementary material
 * ./main_R_code/MCMC_BASOFR_n500_SNR5_smooth.RDATA: MCMC chain to reproduce Figure 2
